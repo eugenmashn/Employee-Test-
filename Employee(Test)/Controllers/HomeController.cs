@@ -31,33 +31,48 @@ namespace Employee_Test_.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> LoadFile(IFormFile uploadedFile)
+        public async Task<IActionResult> LoadFile(FileModel model)
         {
-            if(uploadedFile != null)
+            if(model.File != null)
             { 
-                Employees = await Reader.ReaderAsList(uploadedFile, _appEnvironment.WebRootPath);
+                Employees = await Reader.ReaderAsList(model.File, _appEnvironment.WebRootPath); 
+                return RedirectToAction("ShowEmployee");
             }
-            return RedirectToAction("ShowEmployee");
+            else
+            {
+                ModelState.AddModelError("", "Uploaded file is empty or null.");
+                return View(model);
+            }
         }
 
         [HttpGet]
         public JsonResult Employee()
         {
-            return Json(Employees);
+            if(Employees != null)
+            { 
+                return Json(Employees);
+            }
+            return Json("Empty");
         }
 
         [HttpGet]
         public JsonResult Teams()
         {
-            List<string> teams = new List<string>();
-            foreach(var i in Employees)
+            if (Employees != null)
             {
-                if(teams.FirstOrDefault(t => t == i.TeamName) == null)
+           
+                List<string> teams = new List<string>();
+                foreach(var i in Employees)
                 {
-                    teams.Add(i.TeamName);
+                    if(teams.FirstOrDefault(t => t == i.TeamName) == null)
+                    {
+                        teams.Add(i.TeamName);
+                    }
                 }
+                return Json(teams);
             }
-            return Json(teams);
+            return Json("Empty");
+
         }
 
 
@@ -66,10 +81,6 @@ namespace Employee_Test_.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+   
     }
 }

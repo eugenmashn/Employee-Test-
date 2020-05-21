@@ -19,9 +19,9 @@
     </tbody>
 </table>
 <div class="dropdown">
-    <input type="text" id="combobox" list="ComboBox" />
+    <input type="text"  id="combobox" list="ComboBox" />
     <datalist id="ComboBox"   name="ComboBox">
-      
+       
     </datalist>
   
 </div>
@@ -52,7 +52,7 @@
                 teams => {
                     dataTeam = teams;
                     teams.map((i) => {
-                        $("#ComboBox").append(`<option value=${i} >${i}</option>`)
+                        $("#ComboBox").append(`<option >${i}</option>`)
                     });
                 });
         $('#combobox').change(
@@ -68,8 +68,9 @@
                 }
                 else {
                     dataEmploees.map((i) => {
-                 
-                        if (i.teamName.indexOf(valueTeam) != -1) {
+
+
+                        if ( i.teamName.indexOf(valueTeam) != -1) {
                             console.log("in");
                             $("#bodyTable").append(`<tr><td>${i.name}</td><td>${i.position}</td><td>${i.teamName}</td><td>${i.hireDate}</td></tr>`)
                         }

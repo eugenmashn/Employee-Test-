@@ -1,11 +1,21 @@
-﻿@{
+﻿@model FileModel;
+@{
     ViewData["Title"] = "Home Page";
 }
 
-    <div class="text-center">
-        <h3>Load file</h3>
-        <form asp-action="LoadFile" asp-controller="Home" method="post" enctype="multipart/form-data">
-            <input type="file" name="uploadedFile" /><br>
-            <input type="submit"  />
-        </form>
-    </div>
+<style>
+    .validation {
+        color: red;
+    }
+</style>
+<div class="text-center container">
+    <h3>Load file</h3>
+    <form asp-action="LoadFile" asp-controller="Home" method="post" enctype="multipart/form-data">
+
+        <input type="file" name="File" /><br>
+        <span class="validation" asp-validation-for="File"></span>
+        <input class=" btn-primary" type="submit" />
+
+
+    </form>
+</div>
