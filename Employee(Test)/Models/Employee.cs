@@ -7,6 +7,7 @@ namespace Employee_Test_.Models
 {
     public class Employee
     {
+        public Guid EmployeeId { get; set; }
         public string Name { get; set; }
         public string Position { get; set; }
         public string TeamName { get; set; }

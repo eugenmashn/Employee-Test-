@@ -43,6 +43,7 @@ namespace Employee_Test_.Services
                         foreach (XmlNode childnode in xnode.ChildNodes)
                         {
                             Employee employee = new Employee();
+                            employee.EmployeeId = Guid.NewGuid();
                             employee.TeamName = TeamName;
                             employee.Name = childnode.Attributes["Name"].Value;
                             employee.Position = childnode.Attributes["Position"].Value;

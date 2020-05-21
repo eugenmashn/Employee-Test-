@@ -4,4 +4,20 @@
     <Employee Name="Ivanov I.I." Position="Lead Developer" HireDate="2012.12.12"/>
     <Employee Name="Petrov P.P." Position="Project Manager" HireDate="2014.01.01"/>
   </Unit>
+  <Unit Title="SMS Team">
+    <Employee Name="Ivanov I.I." Position="Lead Developer" HireDate="2012.12.12"/>
+    <Employee Name="Petrov P.P." Position="Project Manager" HireDate="2014.01.01"/>
+  </Unit>
+  <Unit Title="BID Team">
+    <Employee Name="Ivanov I.I." Position="Lead Developer" HireDate="2012.12.12"/>
+    <Employee Name="Petrov P.P." Position="Project Manager" HireDate="2014.01.01"/>
+  </Unit>
+  <Unit Title="BI Team">
+    <Employee Name="Ivanov I.I." Position="Lead Developer" HireDate="2012.12.12"/>
+    <Employee Name="Petrov P.P." Position="Project Manager" HireDate="2014.01.01"/>
+  </Unit>
+  <Unit Title="D Team">
+    <Employee Name="Ivanov I.I." Position="Lead Developer" HireDate="2012.12.12"/>
+    <Employee Name="Petrov P.P." Position="Project Manager" HireDate="2014.01.01"/>
+  </Unit>
 </Units>

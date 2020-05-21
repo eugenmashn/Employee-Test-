@@ -46,6 +46,21 @@ namespace Employee_Test_.Controllers
             return Json(Employees);
         }
 
+        [HttpGet]
+        public JsonResult Teams()
+        {
+            List<string> teams = new List<string>();
+            foreach(var i in Employees)
+            {
+                if(teams.FirstOrDefault(t => t == i.TeamName) == null)
+                {
+                    teams.Add(i.TeamName);
+                }
+            }
+            return Json(teams);
+        }
+
+
         public IActionResult ShowEmployee()
         {
             return View();

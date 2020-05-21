@@ -18,9 +18,17 @@
 
     </tbody>
 </table>
-
+<div class="dropdown">
+    <input type="text" id="combobox" list="ComboBox" />
+    <datalist id="ComboBox"   name="ComboBox">
+      
+    </datalist>
+  
+</div>
 <script>
     $(document).ready(function () {
+        var dataEmploees;
+        var dataTeam;
         fetch(
             'https://localhost:44383/Home/Employee', {
                 method: "GET",
@@ -29,11 +37,47 @@
             .then(response => response.json())
             .then(
                 employees => {
-                    console.log(employees);
+                    dataEmploees = employees;
                     employees.map((i) => {
-                        console.log(i);
-                        $("#bodyTable").append(`<tr><td>${i.name}</td><td>${i.position}</td><td>${i.teamName}</td><td>${i.hireDate}</td></tr>`)
+                        $("#bodyTable").append(`<tr id="rowId"><td>${i.name}</td><td>${i.position}</td><td>${i.teamName}</td><td>${i.hireDate}</td></tr>`)
                     });
                 });
+        fetch(
+            'https://localhost:44383/Home/Teams', {
+            method: "GET",
+            headers: { "Accept": "application/json" }
+        })
+            .then(response => response.json())
+            .then(
+                teams => {
+                    dataTeam = teams;
+                    teams.map((i) => {
+                        $("#ComboBox").append(`<option value=${i} >${i}</option>`)
+                    });
+                });
+        $('#combobox').change(
+           
+            function () {
+                debugger;
+                var valueTeam = $('#combobox').val();
+                $("#bodyTable").empty();
+                if (valueTeam == "") {
+                    dataEmploees.map((i) => {
+                        $("#bodyTable").append(`<tr><td>${i.name}</td><td>${i.position}</td><td>${i.teamName}</td><td>${i.hireDate}</td></tr>`)
+                    });
+                }
+                else {
+                    dataEmploees.map((i) => {
+                 
+                        if (i.teamName.replace(" Team", "") === valueTeam) {
+                            console.log("in");
+                            $("#bodyTable").append(`<tr><td>${i.name}</td><td>${i.position}</td><td>${i.teamName}</td><td>${i.hireDate}</td></tr>`)
+                        }
+
+                    });
+                }
+              
+            }
+        );
     });
 </script>
