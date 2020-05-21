@@ -69,7 +69,7 @@
                 else {
                     dataEmploees.map((i) => {
                  
-                        if (i.teamName.replace(" Team", "") === valueTeam) {
+                        if (i.teamName.indexOf(valueTeam) != -1) {
                             console.log("in");
                             $("#bodyTable").append(`<tr><td>${i.name}</td><td>${i.position}</td><td>${i.teamName}</td><td>${i.hireDate}</td></tr>`)
                         }
