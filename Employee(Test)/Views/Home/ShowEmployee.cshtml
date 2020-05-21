@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<h1>Employees</h1>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Position</th>
+            <th scope="col">Team name</th>
+            <th scope="col">Hire date</th>
+        </tr>
+    </thead>
+    <tbody id="bodyTable">
+
+
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        fetch(
+            'https://localhost:44383/Home/Employee', {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            })
+            .then(response => response.json())
+            .then(
+                employees => {
+                    console.log(employees);
+                    employees.map((i) => {
+                        console.log(i);
+                        $("#bodyTable").append(`<tr><td>${i.name}</td><td>${i.position}</td><td>${i.teamName}</td><td>${i.hireDate}</td></tr>`)
+                    });
+                });
+    });
+</script>
